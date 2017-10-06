@@ -1,0 +1,19 @@
+{
+  "name": "prempoint-chat",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "1.0.14"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "socket.io": "^2.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
