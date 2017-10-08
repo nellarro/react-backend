@@ -32,7 +32,7 @@ class App extends Component {
     // makes sure that user receives messages upon "logging" in
     this.socket.on('broadcasting chat message', msg => {
       this.setState({messages: [...this.state.messages, msg]})
-      console.log(this.state.messages)
+      console.warn(this.state.messages)
     })   
   }
 

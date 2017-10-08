@@ -7,14 +7,6 @@ router.use((req, res, next) => {
   next();
 });
 
-// app.get('/', function(req, res, next) {
-//   // Handle the get for this route
-// });
-
-// app.post('/', function(req, res, next) {
-//  // Handle the post for this route
-// });
-
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   // res.send('respond with a resource');
