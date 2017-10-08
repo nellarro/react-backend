@@ -14,6 +14,9 @@ io.on('connection', socket => {
     console.log('message: ' + msg)
     io.emit('broadcasting chat message', msg)
   })
+  socket.on('get users', users => {
+    console.log(users.length)
+  })
   socket.on('disconnect', () => {
     console.log('user disconnected')
   })

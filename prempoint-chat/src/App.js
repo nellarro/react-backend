@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import io from 'socket.io-client'
+import UserList from './components/UserList'
 
 //  TODO: 
-// Support multiple connections simultaneously
+// Support multiple connections simultaneously [[complete--using your ipaddress]]
 // Allow a user to select a specific user that is online and send a message to them
 // If a user receives a message with the text "<sticker>" in it, show some graphic on the screen
 // If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen
@@ -24,11 +25,12 @@ class App extends Component {
 
 // using lifecycle cDM because fetch
   componentDidMount(){
-    fetch('http://localhost:3001/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users })
-    )
     this.socket = io('http://localhost:3001') 
+    this.socket.emit('get users', this.state.users)
+    // fetch('http://localhost:3001/users')
+    //   .then(res => res.json())
+    //   .then(users => this.setState({ users })
+    // )
     // makes sure that user receives messages upon "logging" in
     this.socket.on('broadcasting chat message', msg => {
       this.setState({messages: [...this.state.messages, msg]})
@@ -41,7 +43,7 @@ class App extends Component {
     if (this.state.text !== '') {
       this.socket.emit('chat is working', this.state.text)
 
-      this.setState({ text: '' })
+      this.setState({ text: ''})
     }
   }
 
@@ -66,8 +68,13 @@ class App extends Component {
               })
             }
           </ul>
+          <UserList />
           <form onSubmit={this.handleSubmit} action="">
-            <input id="m" autoComplete="off" onChange={handleChange} /> <button onSubmit={this.handleSubmit}>Send</button>
+            <input 
+              id="m" 
+              autoComplete="off" 
+              onChange={handleChange} 
+              value={this.state.text} /><button>Send</button>
           </form>
       </div>
     )
