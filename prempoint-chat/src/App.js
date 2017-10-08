@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import './App.css'
 import io from 'socket.io-client'
 
-// let message = {
-//   type : 'message',
-//   text : this.state.text,
-//   // time : 0, // Set by the server
-//   // user : 0, // Set before sending
-// } 
+//  TODO: 
+// Support multiple connections simultaneously
+// Allow a user to select a specific user that is online and send a message to them
+// If a user receives a message with the text "<sticker>" in it, show some graphic on the screen
+// If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen
+// Allow users to respond to incoming messages
 
 class App extends Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class App extends Component {
           <ul id="messages">
             {this.state.messages
               .map((message, i) => {
-                return <li key={i}>{message}</li>
+                return <li key={i} id="messages">{message}</li>
               })
             }
           </ul>
