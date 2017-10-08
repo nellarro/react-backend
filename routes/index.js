@@ -10,10 +10,13 @@ app.get('/', (req, res) => {
 // handles the messages
 io.on('connection', socket => {
   socket.on('chat is working', msg => {
+    console.info('a user is connected')
     console.log('message: ' + msg)
     io.emit('broadcasting chat message', msg)
-  } )
-    console.log('a user is connected')
+  })
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
 })
 
 http.listen(3001, () => {
