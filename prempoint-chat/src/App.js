@@ -7,7 +7,7 @@ import Messages from './components/Message'
 
 //  TODO: 
 // Support multiple connections simultaneously [[complete--using your ipaddress]]
-// Allow a user to select a specific user that is online and send a message to them
+// Allow a user to select a specific user that is online and send a message to them [[]]
 // If a user receives a message with the text "<sticker>" in it, show some graphic on the screen
 // If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen
 // Allow users to respond to incoming messages [[complete]]
@@ -60,16 +60,16 @@ class App extends Component {
         return (
           <div className="App">
             <Login socket={this.socket} />
-              <h1 className="App-title">RIP Aim</h1>
-              <Messages />
-              <UserList socket={this.socket} clearScreen={this.clearScreen}/>
-              <form onSubmit={this.handleSubmit} action="">
-                <input 
-                  id="m" 
-                  autoComplete="off" 
-                  onChange={handleChange} 
-                  value={this.state.text} /><button>Send</button>
-              </form>
+            <UserList socket={this.socket} clearScreen={this.clearScreen}/>
+            <Messages messages={this.state.messages}/>
+            <form onSubmit={this.handleSubmit} action="">
+              <input 
+                id="m" 
+                autoComplete="off" 
+                placeholder="type your message here"
+                onChange={handleChange} 
+                value={this.state.text} /><button>Send</button>
+            </form>
           </div>
         )
       } else {

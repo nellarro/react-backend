@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-// handles the messages
+// handles the messagess
 io.on('connection', socket => {
   io.emit('add users to list', chatUsers)
   socket.on('chat is working', msg => {
@@ -31,9 +31,6 @@ io.on('connection', socket => {
   })
 
 })
-
-// handles users
-
 
 http.listen(3001, () => {
   console.log('port 3001')

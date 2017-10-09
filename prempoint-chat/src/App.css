@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Shadows+Into+Light');
+
+:root {
+  --defaultMessageColor: rgba(2, 82, 82, 0.88);
+  --secondaryColor: #eee;
+}
+
 body {
-  background: #43C6AC;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  background: #FFDEE9; 
+  background: -webkit-linear-gradient(to right, #F8FFAE, #43C6AC);  
+  background: linear-gradient(to right, #FFDEE9, #B5FFFC); 
 }
 
 form {
@@ -25,6 +32,8 @@ form button {
   padding: 10px;
 }
 
+.chat { margin-top: 9em;}
+
 #messages {
   list-style-type: none;
   margin: 0;
@@ -34,14 +43,47 @@ form button {
 
 #messages li { 
   padding: 5px 10px; 
-	background: #ff6666;
+	background: var(--defaultMessageColor);
   position: relative;
-  margin: 1em 0 3em;
-  color: #000;
+  margin: 1em;
+  color: var(--secondaryColor);
   border-radius: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 
-#messages li:nth-child(odd) { background: #eee; }
+#messages li:nth-child(odd) { 
+  background: var(--secondaryColor);
+  font-family: 'Shadows Into Light', cursive; 
+  color: #000;
+}
+
+.users-list {
+  border: 1px solid rgba(0, 139, 139, 0.12);
+  background: rgba(1, 39, 39, 0.12);
+  border-radius: 12px;
+  width: 25%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+
+.users-list ul {
+  padding: 0;
+}
+
+.users-list li {
+  text-transform: uppercase; 
+  list-style: none;
+}
+
+.users-list li a {
+  color: #0300bb;
+}
+
+.users-list li a:hover {
+  color: tomato;
+}
 
 .App {
   text-align: center;

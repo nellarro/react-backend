@@ -17,14 +17,14 @@ class UserList extends Component {
 
     render() {
         return (
-            <div>
+            <div class="users-list">
                 <h4>Online Users</h4>
                 <ul>
                     {this.state.chatUsers
                         .map((user, i) => { 
                             return (
                                 <li key={i}>
-                                    <a href="#" onClick={this.props.clearScreen}>{user}</a>
+                                    <a href="https://www.aim.com" onClick={this.props.clearScreen}>{user}</a>
                                 </li>
                             )
                         })      
