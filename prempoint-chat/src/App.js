@@ -7,9 +7,9 @@ import Messages from './components/Message'
 
 //  TODO: 
 // Support multiple connections simultaneously [[complete--using your ipaddress]]
-// Allow a user to select a specific user that is online and send a message to them [[]]
-// If a user receives a message with the text "<sticker>" in it, show some graphic on the screen
-// If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen
+// Allow a user to select a specific user that is online and send a message to them [[::smile]]
+// If a user receives a message with the text "<sticker>" in it, show some graphic on the screen [[complete]]
+// If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen [[complete]]
 // Allow users to respond to incoming messages [[complete]]
 
 class App extends Component {
@@ -26,6 +26,7 @@ class App extends Component {
 // relative to domain that App is in
 
   componentWillMount(){
+    // for a second user, replace with ip address to initiate communication
     this.socket = io('http://localhost:3001') 
     this.socket.emit('get users', this.state.users)
  
