@@ -23,6 +23,7 @@ io.on('connection', socket => {
   })
   socket.on('create a user', user => {
     chatUsers.push(user)
+    io.emit('add users to list', chatUsers)
     console.log(chatUsers.length)
   })
   socket.on('disconnect', () => {

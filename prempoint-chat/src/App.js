@@ -3,13 +3,14 @@ import './App.css'
 import io from 'socket.io-client'
 import UserList from './components/UserList'
 import Login from './components/LogIn'
+import Messages from './components/Message'
 
 //  TODO: 
 // Support multiple connections simultaneously [[complete--using your ipaddress]]
 // Allow a user to select a specific user that is online and send a message to them
 // If a user receives a message with the text "<sticker>" in it, show some graphic on the screen
 // If a user receives a message with the text "</sticker>" in it, remove that graphic from the screen
-// Allow users to respond to incoming messages
+// Allow users to respond to incoming messages [[complete]]
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
     this.state = {
       text: '',
       messages: [],
-      users: []
+      showScreen: true
     }
   }
 
@@ -43,6 +44,10 @@ class App extends Component {
     }
   }
 
+  clearScreen = () => {
+    this.setState({showScreen: !this.state.showScreen})
+  }
+
 
   render() {
     
@@ -50,32 +55,27 @@ class App extends Component {
       this.setState({ text : e.target.value })
       // console.log(e)
     }
-    
-    return (
-      <div className="App">
-        <Login socket={this.socket} />
-          <h1 className="App-title">RIP Aim</h1>
-          {this.state.users
-            .map(user => <div key={user.id}>{user.username}</div>
-          )}
-          <ul id="messages">
-            {this.state.messages
-              .map((message, i) => {
-                return <li key={i} id="messages">{message}</li>
-              })
-            }
-          </ul>
-          <UserList socket={this.socket} />
-          <form onSubmit={this.handleSubmit} action="">
-            <input 
-              id="m" 
-              autoComplete="off" 
-              onChange={handleChange} 
-              value={this.state.text} /><button>Send</button>
-          </form>
-      </div>
-    )
-  }
+
+      if(this.state.showScreen === true) {
+        return (
+          <div className="App">
+            <Login socket={this.socket} />
+              <h1 className="App-title">RIP Aim</h1>
+              <Messages />
+              <UserList socket={this.socket} clearScreen={this.clearScreen}/>
+              <form onSubmit={this.handleSubmit} action="">
+                <input 
+                  id="m" 
+                  autoComplete="off" 
+                  onChange={handleChange} 
+                  value={this.state.text} /><button>Send</button>
+              </form>
+          </div>
+        )
+      } else {
+        return <Messages />
+      }
+    } 
 }
 
 export default App;

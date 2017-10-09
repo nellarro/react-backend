@@ -22,7 +22,11 @@ class UserList extends Component {
                 <ul>
                     {this.state.chatUsers
                         .map((user, i) => { 
-                            return (<li key={i}>{user}</li>)
+                            return (
+                                <li key={i}>
+                                    <a href="#" onClick={this.props.clearScreen}>{user}</a>
+                                </li>
+                            )
                         })      
                     }           
                 </ul>
