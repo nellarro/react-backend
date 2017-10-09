@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import io from 'socket.io-client'
 import UserList from './components/UserList'
+import Login from './components/LogIn'
 
 //  TODO: 
 // Support multiple connections simultaneously [[complete--using your ipaddress]]
@@ -23,15 +24,10 @@ class App extends Component {
 // uses the entire url because req to node server
 // relative to domain that App is in
 
-// using lifecycle cDM because fetch
-  componentDidMount(){
+  componentWillMount(){
     this.socket = io('http://localhost:3001') 
     this.socket.emit('get users', this.state.users)
-    // fetch('http://localhost:3001/users')
-    //   .then(res => res.json())
-    //   .then(users => this.setState({ users })
-    // )
-    // makes sure that user receives messages upon "logging" in
+ 
     this.socket.on('broadcasting chat message', msg => {
       this.setState({messages: [...this.state.messages, msg]})
       console.warn(this.state.messages)
@@ -57,6 +53,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <Login socket={this.socket} />
           <h1 className="App-title">RIP Aim</h1>
           {this.state.users
             .map(user => <div key={user.id}>{user.username}</div>
@@ -68,7 +65,7 @@ class App extends Component {
               })
             }
           </ul>
-          <UserList />
+          <UserList socket={this.socket} />
           <form onSubmit={this.handleSubmit} action="">
             <input 
               id="m" 

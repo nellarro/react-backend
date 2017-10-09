@@ -1,13 +1,26 @@
 import React, {Component} from 'react'
 
 class UserList extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            chatUsers: []
+        }
+    }
+
+    componentDidMount(){
+        this.props.socket.on('add users to list', chatUsers => {
+            console.log('yay! chatusers are: ' + chatUsers)
+            this.setState({ chatUsers })
+        })      
+    }
+
     render() {
-        let users = []
         return (
             <div>
                 <h4>Online Users</h4>
                 <ul>
-                    {users
+                    {this.state.chatUsers
                         .map((user, i) => { 
                             return (<li key={i}>{user}</li>)
                         })      
